@@ -1,0 +1,6 @@
+
+[Processors]
+
+  [Processors.ci]
+    Id = "ci"
+    Type = "ci"

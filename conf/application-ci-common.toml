@@ -1,0 +1,6 @@
+
+[Processors]
+
+  [Processors.ci]
+    Id = "common"
+    Name = "ci"
