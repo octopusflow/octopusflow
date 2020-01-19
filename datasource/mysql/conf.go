@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/imdario/mergo"
@@ -33,4 +34,11 @@ var defaultConf = &Conf{
 
 func (c *Conf) MergeWithDefault() error {
 	return mergo.Merge(c, defaultConf)
+}
+
+func (c *Conf) BuildArgs() string {
+	prefix := fmt.Sprintf("%s:%s@(%s)/%s?", c.User, c.Password, c.Host, c.DBName)
+	suffix := fmt.Sprintf("charset=%s&parseTime=True&loc=Local&timeout=%s&readTimeout=%s&writeTimeout=%s",
+		c.DBCharset, c.Timeout, c.ReadTimeout, c.WriteTimeout)
+	return prefix + suffix
 }
